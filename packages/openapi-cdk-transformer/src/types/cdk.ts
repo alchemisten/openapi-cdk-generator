@@ -6,7 +6,8 @@ export interface ApiResource<V extends NullableApiType = 'none'> {
     path: string;
     name: string;
     spec?: OpenApiPath[V];
-    operations: Record<string, ApiOperation>;
+    operations: Record<string, ApiOperation<V>>;
+    resources: Record<string, ApiResource<V>>;
 }
 
 export interface ApiOperation<V extends NullableApiType = 'none'> {
@@ -22,5 +23,5 @@ export interface ApiController<V extends NullableApiType = 'none'> {
     name: string;
     description: string;
     spec?: OpenAPITag[V];
-    resources: Record<string, ApiResource>;
+    resources: Record<string, ApiResource<V>>;
 }
