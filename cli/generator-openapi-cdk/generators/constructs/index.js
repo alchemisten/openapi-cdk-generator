@@ -1,4 +1,5 @@
 const Generator = require('yeoman-generator');
+const {  } = require('openapi-cdk-transformer');
 
 /**
  * @type {OpenAPICDKGenerator}
@@ -7,9 +8,5 @@ const Generator = require('yeoman-generator');
 module.exports = class extends Generator {
     constructor(args, opts) {
         super(args, opts);
-    }
-
-    hello() {
-        this.log('Hello!')
     }
 };
