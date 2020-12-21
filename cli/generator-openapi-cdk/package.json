@@ -1,0 +1,36 @@
+{
+  "name": "generator-openapi-cdk",
+  "version": "0.1.0",
+  "description": "Yeoman generator that takes an OpenAPI Specification and outputs AWS CDK Constructs for API Gateway",
+  "files": [
+    "generators"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.0.0",
+    "openapi-cdk-transformer": "^0.1.0"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "setup-dev": "rimraf package-lock.json && npm link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchemisten/openapi-cdk-generator.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "generator",
+    "typescript",
+    "cdk",
+    "aws",
+    "api-gateway",
+    "apigateway",
+    "openapi",
+    "specification",
+    "swagger"
+  ],
+  "author": "Alchemisten AG",
+  "license": "MIT"
+}

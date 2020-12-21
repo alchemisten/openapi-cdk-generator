@@ -1,0 +1,10 @@
+{
+  "packages": [
+    "packages/*",
+    "cdk/*",
+    "cli/*",
+    "lambda/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn"
+}
