@@ -1,5 +1,4 @@
-import { OpenAPIParserImpl }                   from "../src/parser";
-import { IOpenAPIParser, OpenAPIParserResult } from "../src/types";
+import { IOpenAPIParser, OpenAPIParserImpl, OpenAPIParserResult }                   from '../src';
 import { getSpecData }                         from "./utils";
 
 
