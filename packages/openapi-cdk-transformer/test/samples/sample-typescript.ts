@@ -1,12 +1,9 @@
-export type Foo = {
-    bar?: string;
-}
-
-export interface Snack {
-    snoot: boolean;
-    foos: Foo[];
-}
-
-const test = () => {
-
+import { Construct } from "@aws-cdk/core";
+class Snoot extends Construct {
+    constructor(scope: Construct, id: string) {
+        super(scope, id);
+    }
+    async snacks(): Promise<number> {
+        return 0;
+    }
 }
