@@ -1,4 +1,5 @@
 import { NullableApiType, OpenApiOperation, OpenApiPath, OpenAPITag } from "./open-api";
+import { JSONSchema4 } from 'json-schema';
 
 export type ApiMethod = 'get' | 'post' | 'patch' | 'put' | 'delete' | 'options';
 
@@ -15,7 +16,7 @@ export interface ApiOperation<V extends NullableApiType = 'none'> {
     operationId: string;
     spec?: OpenApiOperation[V];
     description: string;
-    // TODO continue here to add model definitions
+    schema: JSONSchema4;
 }
 
 export interface ApiController<V extends NullableApiType = 'none'> {

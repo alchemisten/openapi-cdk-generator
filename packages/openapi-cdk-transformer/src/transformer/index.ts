@@ -5,11 +5,13 @@ import {
     IOpenAPIToCDKConstructTransformer, NullableApiType,
     OpenAPIV2Spec, OpenAPIV3Spec
 }                    from "../types";
-import { OpenAPIV2 } from "openapi-types";
+import { OpenAPIV2, OpenAPIV3 } from "openapi-types";
 
 import { camelCase } from 'change-case';
+import {OpenApiSpecSchemaConverter} from "./open-api-spec-schema-converter";
 
 export class OpenAPIToCDKConstructTransformerImpl implements IOpenAPIToCDKConstructTransformer {
+
     async transform<V extends NullableApiType>(apiDocument: OpenAPIV2Spec | OpenAPIV3Spec): Promise<CDKConstructResult<V>> {
 
         if (apiDocument.majorVersion === 'v2') {
@@ -66,9 +68,10 @@ export class OpenAPIToCDKConstructTransformerImpl implements IOpenAPIToCDKConstr
         return currentResource;
     }
 
-    async getV2Resources(apiDocument: OpenAPIV2Spec): Promise<Record<string, ApiResource<'v2'>>> {
+    async getV3Resources(apiDocument: OpenAPIV3Spec): Promise<Record<string, ApiResource<'v3'>>> {
 
-        const resources: Record<string, ApiResource<'v2'>> = {}
+        const resources: Record<string, ApiResource<'v3'>> = {}
+        const specSchemaConverter = new OpenApiSpecSchemaConverter(apiDocument.spec);
 
         const paths = apiDocument.spec.paths;
 
@@ -78,14 +81,14 @@ export class OpenAPIToCDKConstructTransformerImpl implements IOpenAPIToCDKConstr
             }
 
             const resource = this.createAndGetNestedResource(apiPath, resources);
-            const pathItem: OpenAPIV2.PathItemObject = paths[apiPath];
+            const pathItem: OpenAPIV3.PathItemObject = paths[apiPath];
 
             const { parameters, $ref, ...pathOperations } = pathItem;
             if (parameters) {
                 console.warn("Parameters are defined, this feature is not implemented yet!", resource, parameters);
             }
             const operations = Object.entries(pathOperations)
-                .reduce<{ [key: string]: OpenAPIV2.OperationObject }>((stack, [key, value]) => {
+                .reduce<{ [key: string]: OpenAPIV3.OperationObject }>((stack, [key, value]) => {
                     stack[key] = value;
                     return stack;
                 }, {});
@@ -103,6 +106,7 @@ export class OpenAPIToCDKConstructTransformerImpl implements IOpenAPIToCDKConstr
                     method: method as ApiMethod,
                     operationId,
                     spec: operation,
+                    schema: specSchemaConverter.createSchemaForOperation(operation),
                     description: operation.description || ''
                 }
             }
@@ -111,7 +115,7 @@ export class OpenAPIToCDKConstructTransformerImpl implements IOpenAPIToCDKConstr
         return resources;
     }
 
-    async getV3Resources(apiDocument: OpenAPIV3Spec): Promise<Record<string, ApiResource<'v3'>>> {
+    async getV2Resources(apiDocument: OpenAPIV2Spec): Promise<Record<string, ApiResource<'v2'>>> {
         throw 'not implemented';
     }
 }
