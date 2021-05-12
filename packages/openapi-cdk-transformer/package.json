@@ -12,7 +12,8 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "preversion": "npm run lint",
-    "test": "jest --passWithNoTests"
+    "test": "jest --passWithNoTests",
+    "generate-openapi": "openapi-generator-cli generate -t ./templates -i ./test/samples/petstore-v3.yaml -g typescript-axios -o sample/src/lambda/shared/generated/petstore-api --additional-properties=withInterfaces=true,typescriptThreePlus=true,withSeparateModelsAndApi=true,apiPackage=api,modelPackage=dto --skip-validate-spec"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   },
   "homepage": "https://github.com/alchemisten/openapi-cdk-generator#readme",
   "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.2.6",
     "change-case": "^4.1.2",
     "openapi-types": "^7.0.1",
     "prettier": "^2.2.1",

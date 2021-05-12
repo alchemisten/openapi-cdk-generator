@@ -1,0 +1,70 @@
+{{#withSeparateModelsAndApi}}
+/* tslint:disable */
+/* eslint-disable */
+
+import type {APIGatewayProxyEvent, APIGatewayProxyResult} from "aws-lambda";
+import middy from '@middy/core';
+{{#imports}}
+// @ts-ignore
+import { {{classname}} } from '{{apiRelativeToRoot}}{{tsModelPackage}}';
+{{/imports}}
+{{/withSeparateModelsAndApi}}
+{{^withSeparateModelsAndApi}}
+{{/withSeparateModelsAndApi}}
+{{#operations}}
+
+{{#withInterfaces}}
+/**
+ * I{{classname}} - interface{{#description}}
+ * {{&description}}{{/description}}
+ * @export
+ * @interface I{{classname}}
+ */
+export interface I{{classname}} {
+{{#operation}}
+    /**
+     * {{&notes}}
+     {{#summary}}
+     * @summary {{&summary}}
+     {{/summary}}
+     {{#allParams}}
+     * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+     {{/allParams}}
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof I{{classname}}
+     */
+    {{nickname}}(request: { {{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}; {{/allParams}} }): Promise<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}}>;
+
+{{/operation}}
+}
+
+/**
+ * {{classname}} - interface{{#description}}
+ * {{&description}}{{/description}}
+ * @export
+ * @interface I{{classname}}Delegate
+ */
+export interface I{{classname}}Delegate {
+{{#operation}}
+    /**
+     * {{&notes}}
+     {{#summary}}
+     * @summary {{&summary}}
+     {{/summary}}
+     {{#allParams}}
+     * @param {{=<% %>=}}{<%&dataType%>}<%={{ }}=%> {{^required}}[{{/required}}{{paramName}}{{^required}}]{{/required}} {{description}}
+     {{/allParams}}
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof I{{classname}}Delegate
+     */
+    {{nickname}}(event: APIGatewayProxyEvent, requestParams: { {{#allParams}}{{paramName}}{{^required}}?{{/required}}: {{{dataType}}}; {{/allParams}} }): Promise<APIGatewayProxyResult & { body: {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}void{{/returnType}} }>;
+
+{{/operation}}
+
+    useCustomMiddleware?: (handler: middy.MiddyfiedHandler) => middy.MiddyfiedHandler;
+}
+
+{{/withInterfaces}}
+{{/operations}}
