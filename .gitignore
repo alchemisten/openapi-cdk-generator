@@ -1,5 +1,9 @@
+# ide and system
 .idea
-node_modules
 .DS_Store
+
+# npm and build output
+node_modules
 dist
 build
+lib

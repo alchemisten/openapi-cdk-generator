@@ -1,10 +1,9 @@
 {
-  "packages": [
-    "packages/*",
-    "cdk/*",
-    "cli/*",
-    "lambda/*"
-  ],
-  "version": "independent",
-  "npmClient": "yarn"
+	"packages": [
+		"packages/*",
+		"cli/*"
+	],
+	"useWorkspaces": true,
+	"version": "independent",
+	"npmClient": "yarn"
 }

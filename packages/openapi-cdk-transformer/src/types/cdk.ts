@@ -1,4 +1,4 @@
-import { NullableApiType, OpenApiOperation, OpenApiPath, OpenAPITag } from "./open-api";
+import { NullableApiType, OpenApiOperation, OpenApiPath, OpenAPITag } from './open-api';
 
 export type ApiMethod = 'get' | 'post' | 'patch' | 'put' | 'delete' | 'options';
 

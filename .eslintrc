@@ -1,0 +1,42 @@
+{
+	"extends": "airbnb-typescript-prettier",
+	"root": true,
+	"ignorePatterns": ["**/*.d.ts", "**/*.js", "**/*.test.ts"],
+	"rules": {
+		"no-console": "off",
+		"no-return-await": "off",
+		"no-await-in-loop": "off",
+		"no-useless-constructor": "off",
+		"no-restricted-syntax": "off",
+		"no-cond-assign": "off",
+		"no-param-reassign": "off",
+		"class-methods-use-this": "off",
+		"consistent-return": "off",
+		"import/prefer-default-export": "off",
+		"sort-imports": [
+			"warn",
+			{
+				"ignoreCase": true,
+				"ignoreDeclarationSort": true,
+				"ignoreMemberSort": false
+			}
+		],
+		"@typescript-eslint/no-unused-vars": "warn",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/explicit-member-accessibility": [
+			"warn",
+			{
+				"accessibility": "explicit"
+			}
+		],
+		"prettier/prettier": [
+			"warn",
+			{
+				"printWidth": 120,
+				"semi": true,
+				"singleQuote": true,
+				"tabWidth": 4
+			}
+		]
+	}
+}

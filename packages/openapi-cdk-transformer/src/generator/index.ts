@@ -1,5 +1,3 @@
-import { ICDKConstructGenerator } from "../types";
+import { ICDKConstructGenerator } from '../types';
 
-export class CDKConstructGeneratorImpl implements  ICDKConstructGenerator {
-
-}
+export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {}
