@@ -1,10 +1,9 @@
 import { NullableApiType, OpenApiSpecs, OpenAPIV2Spec, OpenAPIV3Spec } from './open-api';
-import { ApiResource } from './cdk';
+import { ApiController } from './cdk';
 
 export interface CDKConstructResult<V extends NullableApiType = 'none'> {
     spec: OpenApiSpecs[V];
-
-    resources: Record<string, ApiResource<V>>;
+    controllers: Record<string, ApiController<V>>;
 }
 
 export interface IOpenAPIToCDKConstructTransformer {

@@ -3,6 +3,7 @@ import { NullableApiType, OpenApiOperation, OpenApiPath, OpenAPITag } from './op
 export type ApiMethod = 'get' | 'post' | 'patch' | 'put' | 'delete' | 'options';
 
 export interface ApiResource<V extends NullableApiType = 'none'> {
+    controller: string;
     path: string;
     name: string;
     spec?: OpenApiPath[V];
@@ -23,5 +24,5 @@ export interface ApiController<V extends NullableApiType = 'none'> {
     name: string;
     description: string;
     spec?: OpenAPITag[V];
-    resources: Record<string, ApiResource<V>>;
+    operations: Record<string, ApiOperation<V>>;
 }

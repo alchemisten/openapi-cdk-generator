@@ -28,5 +28,6 @@ describe( 'OpenAPI Transformer', () => {
         const spec: OpenAPIParserResult = await parser.parse( v3Contents );
         const result: CDKConstructResult = await transformer.transform( spec );
 
+        console.log( result );
     } );
 } );
