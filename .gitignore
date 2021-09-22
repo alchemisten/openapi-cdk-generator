@@ -1,6 +1,7 @@
 # ide and system
 .idea
 .DS_Store
+*.log
 
 # npm and build output
 node_modules

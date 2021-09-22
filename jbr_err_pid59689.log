@@ -1,9 +1,0 @@
-Exception in NSApplicationAWT:
- -[AWTWindow_Normal parent]: unrecognized selector sent to instance 0x7f9e8d055f30
-0   CoreFoundation                      0x00007fff2049d6af __exceptionPreprocess + 242
-1   libobjc.A.dylib                     0x00007fff201d53c9 objc_exception_throw + 48
-2   CoreFoundation                      0x00007fff2051fc85 -[NSObject(NSObject) __retain_OA] + 0
-3   CoreFoundation                      0x00007fff2040507d ___forwarding___ + 1467
-4   CoreFoundation                      0x00007fff20404a38 _CF_forwarding_prep_0 + 120
-5   jna13225902903444373324.tmp         0x0000000129bd2e74 ffi_call_unix64 + 76
-6   ???                                 0x00007ffeec3e1f08 0x0 + 140732861914888
