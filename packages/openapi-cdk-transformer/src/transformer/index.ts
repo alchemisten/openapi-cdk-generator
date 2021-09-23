@@ -63,6 +63,7 @@ export class OpenAPIToCDKConstructTransformerImpl implements IOpenAPIToCDKConstr
         return {
             spec: apiDocument.spec as OpenApiSpecs[V],
             controllers,
+            resources,
         };
     }
 
