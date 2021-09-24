@@ -1,7 +1,7 @@
 import { CDKConstructResult } from './transformer';
 import { NullableApiType, OpenApiSpecs } from './open-api';
 
-export interface CDKConstructGeneratorProps<V extends NullableApiType = 'none'> {
+export interface CDKConstructGenerateProps<V extends NullableApiType = 'none'> {
     constructInfo: CDKConstructResult<V>;
 }
 
@@ -16,7 +16,5 @@ export interface CDKConstructGeneratorResult<V extends NullableApiType = 'none'>
 }
 
 export interface ICDKConstructGenerator {
-    generate<V extends NullableApiType>(
-        request: CDKConstructGeneratorProps<V>
-    ): Promise<CDKConstructGeneratorResult<V>>;
+    generate<V extends NullableApiType>(request: CDKConstructGenerateProps<V>): Promise<CDKConstructGeneratorResult<V>>;
 }

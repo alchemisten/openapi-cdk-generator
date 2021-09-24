@@ -32,6 +32,7 @@
 	"homepage": "https://github.com/alchemisten/openapi-cdk-generator#readme",
 	"dependencies": {
 		"change-case": "^4.1.2",
+		"cosmiconfig": "^7.0.1",
 		"ejs": "^3.1.6",
 		"mem-fs": "^2.2.1",
 		"mem-fs-editor": "^9.3.0",

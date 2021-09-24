@@ -7,12 +7,14 @@ import {
 } from "../src";
 import {getSpecData} from "./utils";
 
-import prettier from 'prettier';
+import {PrettierCodeFormatter} from "../src/generator/formatting";
 
 describe( 'Typescript generator', () => {
     const parser: IOpenAPIParser = new OpenAPIParserImpl();
     const transformer: IOpenAPIToCDKConstructTransformer = new OpenAPIToCDKConstructTransformerImpl();
-    const generator = new CDKConstructGeneratorImpl();
+    const generator = new CDKConstructGeneratorImpl({
+        formatter: PrettierCodeFormatter.fromLocalConfig()
+    });
 
     test('Simple Generator', async () => {
 
@@ -26,6 +28,6 @@ describe( 'Typescript generator', () => {
             constructInfo: constructs
         });
 
-        console.log(prettier.format(result.outputs['functions.ts'].content, {parser: 'babel-ts'}));
+        console.log(result.outputs['functions.ts'].content);
     });
 } );
