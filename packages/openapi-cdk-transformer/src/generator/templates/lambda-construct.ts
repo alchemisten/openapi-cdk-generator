@@ -1,11 +1,13 @@
-export interface LambdaConstructProps {
+import { TypeImportsProps } from './type-imports';
+
+export interface LambdaConstructProps extends TypeImportsProps {
     className: string;
     operations: string[];
 }
 
 // language=ejs
 export const lambdaConstructTemplate = `
-import { Function } from '@aws-cdk/aws-lambda';
+<%- include('type-imports', imports) %>
 
 export interface I<%- className %> {
     <% for(const operationId of operations) { %>

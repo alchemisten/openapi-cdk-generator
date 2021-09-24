@@ -25,9 +25,11 @@ describe( 'Typescript generator', () => {
         const constructs: CDKConstructResult = await transformer.transform( spec );
 
         const result: CDKConstructGeneratorResult = await generator.generate({
-            constructInfo: constructs
+            constructInfo: constructs,
         });
 
-        console.log(result.outputs['functions.ts'].content);
+        for(const output of Object.values(result.outputs)) {
+            console.log(`File: "${output.filePath}"\n\n${output.content}`);
+        }
     });
 } );
