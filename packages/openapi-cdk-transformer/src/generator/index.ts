@@ -27,8 +27,10 @@ export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {
         GeneratorFileTemplates.addLambdaFunctionImport(lambdaFunctions);
 
         for (const controller of Object.values(request.constructInfo.controllers)) {
+            const functionsInterface = `I${pascalCase(controller.name)}Functions`;
+
             GeneratorFileTemplates.addLambdasInterfaceConstruct(lambdaFunctions, {
-                className: `I${pascalCase(controller.name)}Functions`,
+                className: functionsInterface,
                 operations: Object.values(controller.operations).map((operation) => {
                     return {
                         name: operation.operationId,
