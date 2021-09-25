@@ -70,9 +70,11 @@ export class GenerateCommand extends BaseCommand {
         };
 
         if (!config.specPath) {
-            return logger.error(
-                'Spec path must be specified (either via specPath config param or --spec cli parameter)'
-            );
+            return logger.error('Spec (--spec, "specPath") path must be specified');
+        }
+
+        if (!config.name) {
+            return logger.error('Name (--name, "name") for api must be defined!');
         }
 
         const absoluteSpecPath = path.resolve(process.cwd(), config.specPath);
@@ -93,12 +95,13 @@ export class GenerateCommand extends BaseCommand {
         const constructs: CDKConstructResult = await transformer.transform(spec);
 
         const result: CDKConstructGeneratorResult = await generator.generate({
-            apiName: 'PetStoreApi',
+            apiName: config.name,
             constructInfo: constructs,
         });
 
         const editor = createEditor(createStore());
         for (const output of Object.values(result.outputs)) {
+            logger.info(`  ->: ${output.filePath}`);
             const absoluteOutputPath = path.resolve(process.cwd(), output.filePath);
             editor.write(absoluteOutputPath, output.content);
         }
