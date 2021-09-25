@@ -4,6 +4,7 @@ import {
     classImplTemplate,
     classInterfaceTemplate,
     commentTemplate,
+    constantsTemplate,
     functionBodyTemplate,
     functionParametersTemplate,
     functionsInterfaceTemplate,
@@ -49,6 +50,9 @@ export abstract class EjsTypescriptUtils {
                 break;
             case 'function-parameters':
                 template = functionParametersTemplate;
+                break;
+            case 'constants':
+                template = constantsTemplate;
                 break;
             default:
                 throw new Error(`Template ${originalPath} is not defined`);

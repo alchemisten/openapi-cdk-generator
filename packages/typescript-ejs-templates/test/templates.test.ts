@@ -1,6 +1,7 @@
 import {
     BlocksProps,
     CommentProps,
+    ConstantsProps,
     EjsTypescriptUtils,
     FunctionParametersProps,
     FunctionInterfacesProps,
@@ -10,6 +11,7 @@ import {
     functionBodyTemplate,
     blocksTemplate,
     functionsInterfaceTemplate,
+    constantsTemplate,
 } from "../src";
 
 describe('Templates', () => {
@@ -112,5 +114,26 @@ describe('Templates', () => {
 
         const renderedFunctionBody = EjsTypescriptUtils.render(functionBodyTemplate, props);
         console.log(renderedFunctionBody);
+    });
+
+    test('Constant', async () => {
+        const props: ConstantsProps = {
+            constants: [
+                {
+                    name: 'FOO_BAR_BAZ',
+                    export: true,
+                    value: 'some_value',
+                    asString: true
+                },
+                {
+                    name: 'FOO_BAR_BAZ_SNACKS',
+                    export: true,
+                    value: 'some_value',
+                    asString: true
+                }
+            ]
+        }
+        const renderedConstant = EjsTypescriptUtils.render(constantsTemplate, props);
+        console.log(renderedConstant);
     });
 })

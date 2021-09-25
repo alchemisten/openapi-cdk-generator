@@ -9,3 +9,4 @@ export * from './comment';
 export * from './blocks';
 export * from './function-body';
 export * from './function-parameters';
+export * from './constants';
