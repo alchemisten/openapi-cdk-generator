@@ -1,9 +1,6 @@
-import prettier, { Options } from 'prettier';
 import { cosmiconfigSync } from 'cosmiconfig';
-
-export interface ICodeFormatter {
-    format(code: string): string;
-}
+import prettier, { Options } from 'prettier';
+import { ICodeFormatter } from './types';
 
 export class PrettierCodeFormatter implements ICodeFormatter {
     public static fromLocalConfig(): PrettierCodeFormatter {

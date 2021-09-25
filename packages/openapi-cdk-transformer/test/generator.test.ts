@@ -1,3 +1,4 @@
+import {PrettierCodeFormatter} from "typescript-ejs-templates";
 import {
     CDKConstructGeneratorImpl, CDKConstructGeneratorResult,
     CDKConstructResult,
@@ -6,8 +7,6 @@ import {
     OpenAPIParserResult, OpenAPIToCDKConstructTransformerImpl
 } from "../src";
 import {getSpecData} from "./utils";
-
-import {PrettierCodeFormatter} from "../src/generator/formatting";
 
 describe( 'Typescript generator', () => {
     const parser: IOpenAPIParser = new OpenAPIParserImpl();

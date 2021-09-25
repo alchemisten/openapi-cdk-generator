@@ -6,7 +6,7 @@ export interface ModifiersProps {
 }
 
 // language=ejs
-export const modifierTemplate = `
+export const modifierTemplate = `<% -%>
     <%- typeof modifier !== 'undefined' ? modifier : '' _%> 
     <%- typeof static !== 'undefined' ? 'static' : '' _%> 
     <%- typeof readonly !== 'undefined' ? 'readonly' : '' _%> 

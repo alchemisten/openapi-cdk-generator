@@ -19,11 +19,11 @@ export interface NamedExport {
 
 // language=ejs
 export const typeImportsTemplate = `
-<% for(const imp of imports) { %>
+<% for(const imp of imports) { _%>
 import <%- (imp.starAs && imp.exportName) ? '* as' : '' %> <%- imp.singleImport || imp.exportName || '' %><%- (imp.singleImport && imp.namedExports) ? ',' : '' %>
     <% if(imp.namedExports) { %>
         { <%- imp.namedExports.join(', ') %> }
     <% } %>
 <% if (imp.exportName || imp.namedExports || imp.singleImport) {%>from<% } %> '<%- imp.from %>';
-<% } %>
+<% } _%>
 `;

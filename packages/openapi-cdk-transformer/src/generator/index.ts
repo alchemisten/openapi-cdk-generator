@@ -1,11 +1,12 @@
+import { ICodeFormatter, NoopFormatter, TypescriptEjsTemplateBuilder } from 'typescript-ejs-templates';
 import {
     CDKConstructGenerateProps,
     CDKConstructGeneratorResult,
     ICDKConstructGenerator,
     NullableApiType,
+    SourceFile,
 } from '../types';
 import { GeneratorFileTemplates } from './files';
-import { ICodeFormatter } from './formatting';
 
 export interface CDKConstructGeneratorProps {
     formatter?: ICodeFormatter;
@@ -14,30 +15,30 @@ export interface CDKConstructGeneratorProps {
 export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {
     public constructor(protected props: CDKConstructGeneratorProps) {}
 
-    protected formatCode(code: string): string {
-        if (this.props.formatter) {
-            return this.props.formatter.format(code);
-        }
-
-        return code;
-    }
-
     public async generate<V extends NullableApiType>(
         request: CDKConstructGenerateProps<V>
     ): Promise<CDKConstructGeneratorResult<V>> {
+        const builder = new TypescriptEjsTemplateBuilder({
+            formatter: this.props.formatter ?? new NoopFormatter(),
+        });
+
+        GeneratorFileTemplates.addLambdasInterfaceConstruct(builder.addSourceFile(), {
+            className: 'ISomeLambdaFunctions',
+            operations: ['getMe', 'getThis', 'getThat'],
+        }).build(`src/generated/functions.ts`);
+
         return {
             spec: request.constructInfo.spec,
-            outputs: {
-                'functions.ts': {
-                    filePath: 'functions.ts',
-                    content: this.formatCode(
-                        GeneratorFileTemplates.lambdaConstruct({
-                            className: 'ISomeLambdaFunctions',
-                            operations: ['getMe'],
-                        })
-                    ),
+            outputs: Object.entries(builder.getSourceFiles()).reduce<Record<string, SourceFile>>(
+                (stack, [filePath, content]) => {
+                    stack[filePath] = {
+                        filePath,
+                        content,
+                    };
+                    return stack;
                 },
-            },
+                {}
+            ),
         };
     }
 }

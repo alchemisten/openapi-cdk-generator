@@ -19,10 +19,10 @@ export interface FunctionParameter {
 
 // language=ejs
 export const functionsInterfaceTemplate = `
-<% for(const func of functions) { %>
+<% for(const func of functions) { _%>
     <%- include('modifiers', func) %> <%- func.name %>(<% for(let i = 0; i < func.parameters.length; i++) { const param = func.parameters[i]; %>
         <%- param.name %><%- param.optional ? '?' : '' -%>: <%- param.type -%><%- i !== func.parameters.length -1 ? ', ' : ' ' -%>
         <% } %>
-    ):  <%- wrapIf('Promise<', func.returnType, '>', func.asyncReturn) %>
-<% } %>
+    ):  <%- utils.wrapIf(func.asyncReturn, 'Promise<', func.returnType, '>') %>
+<% } _%>
 `;
