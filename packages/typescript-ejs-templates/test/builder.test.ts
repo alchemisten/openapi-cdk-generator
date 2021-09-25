@@ -1,4 +1,9 @@
-import {TypescriptEjsTemplateBuilder, PrettierCodeFormatter, TypescriptEjsTemplateBuilderProps} from '../src';
+import {
+    TypescriptEjsTemplateBuilder,
+    PrettierCodeFormatter,
+    TypescriptEjsTemplateBuilderProps,
+    ClassBuilder
+} from '../src';
 
 describe('Builder', () => {
 
@@ -37,10 +42,22 @@ describe('Builder', () => {
         const sourceFileBuilder = builder
             .addSourceFile()
 
-        sourceFileBuilder.addBlock({
-            type: 'class-impl',
-            name: 'TheClazzToAdd'
-        });
+        sourceFileBuilder.addBlock(
+            new ClassBuilder('MyClazz')
+                .setComment({comment: 'This is some class', jsDoc: true})
+                .addMethod({
+                    name: 'test',
+                    returnType: 'void',
+                    body: 'console.log(`Hello ${name}`)',
+                    modifier: 'public',
+                    async: true,
+                    asyncReturn: true,
+                    parameters: [{
+                        name: 'name',
+                        type: 'string'
+                    }]
+                })
+                .build());
 
         sourceFileBuilder.build('clazz.ts');
 

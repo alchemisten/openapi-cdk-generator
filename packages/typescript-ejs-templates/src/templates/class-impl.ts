@@ -1,4 +1,5 @@
 import { CommentProps } from './comment';
+import { FunctionBodyProps } from './function-body';
 import { PropertiesInterfaceProps } from './properties-interface';
 
 export interface ClassImplProps extends Partial<PropertiesInterfaceProps>, CommentProps {
@@ -6,6 +7,11 @@ export interface ClassImplProps extends Partial<PropertiesInterfaceProps>, Comme
     extendsClass?: string;
     implementsInterfaces?: string[];
     generics?: string;
+    methods?: MemberFunctionBodyProps[];
+}
+
+export interface MemberFunctionBodyProps extends FunctionBodyProps {
+    type: 'member';
 }
 
 // language=ejs
@@ -14,8 +20,13 @@ export const classImplTemplate = `
 export class <%- name %><% if(typeof generics !== 'undefined') { %><<%- generics %>><% } %>
 <% if(typeof extendsClass !== 'undefined') { %>extends <%- extendsClass %><% } %>
 <% if(typeof implementsInterfaces !== 'undefined') { %> implements <%- implementsInterfaces.join(', ') %><% } %> {
-    <% if(typeof properties !== 'undefined') { %>
+    <% if(typeof properties !== 'undefined') { -%>
         <%- include('properties-interface', properties) %>
-    <% } %>
+    <% } -%>
+    <% if(typeof methods !== 'undefined') { -%>
+        <% for(const method of methods) { -%>
+            <%- include('function-body', method) %>
+        <% } -%>
+    <% } -%>
 }
 `;

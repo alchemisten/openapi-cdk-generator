@@ -39,7 +39,30 @@ describe('Templates', () => {
                 {
                     type: 'class-impl',
                     name: 'MyInterface',
-                    extendsClass: 'Baz'
+                    extendsClass: 'Baz',
+                    properties: [
+                        {
+                            fieldName: 'theField',
+                            type: 'number'
+                        }
+                    ],
+                    methods: [
+                        {
+                            type: 'member',
+                            name: 'test',
+                            body: 'return value + 1',
+                            returnType: 'number',
+                            modifier: 'private',
+                            async: true,
+                            asyncReturn: true,
+                            parameters: [
+                                {
+                                    name: 'value',
+                                    type: 'number',
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }
