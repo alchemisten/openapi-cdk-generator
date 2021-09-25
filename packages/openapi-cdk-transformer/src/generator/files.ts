@@ -1,27 +1,36 @@
 import { ISourceFileBuilder } from 'typescript-ejs-templates';
 
+export interface OperationDescriptor {
+    name: string;
+    description: string;
+}
+
 export interface LambdaConstructProps {
     className: string;
-    operations: string[];
+    operations: OperationDescriptor[];
 }
 
 export abstract class GeneratorFileTemplates {
-    public static addLambdasInterfaceConstruct(
-        builder: ISourceFileBuilder,
-        props: LambdaConstructProps
-    ): ISourceFileBuilder {
+    public static addLambdaFunctionImport(builder: ISourceFileBuilder): ISourceFileBuilder {
         builder.addImport({
             from: '@aws-cdk/aws-lambda',
             namedExports: ['Function'],
         });
+        return builder;
+    }
 
+    public static addLambdasInterfaceConstruct(
+        builder: ISourceFileBuilder,
+        props: LambdaConstructProps
+    ): ISourceFileBuilder {
         builder.addBlock({
             type: 'class-interface',
             name: props.className,
             properties: props.operations.map((operation) => ({
                 type: 'Function',
-                fieldName: operation,
-                comment: 'Hello World!',
+                fieldName: operation.name,
+                comment: operation.description,
+                jsDoc: true,
             })),
         });
 

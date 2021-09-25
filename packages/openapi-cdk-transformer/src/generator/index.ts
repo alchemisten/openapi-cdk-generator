@@ -1,3 +1,4 @@
+import { pascalCase } from 'change-case';
 import { ICodeFormatter, NoopFormatter, TypescriptEjsTemplateBuilder } from 'typescript-ejs-templates';
 import {
     CDKConstructGenerateProps,
@@ -22,10 +23,22 @@ export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {
             formatter: this.props.formatter ?? new NoopFormatter(),
         });
 
-        GeneratorFileTemplates.addLambdasInterfaceConstruct(builder.addSourceFile(), {
-            className: 'ISomeLambdaFunctions',
-            operations: ['getMe', 'getThis', 'getThat'],
-        }).build(`src/generated/functions.ts`);
+        const lambdaFunctions = builder.addSourceFile();
+        GeneratorFileTemplates.addLambdaFunctionImport(lambdaFunctions);
+
+        for (const controller of Object.values(request.constructInfo.controllers)) {
+            GeneratorFileTemplates.addLambdasInterfaceConstruct(lambdaFunctions, {
+                className: `I${pascalCase(controller.name)}Functions`,
+                operations: Object.values(controller.operations).map((operation) => {
+                    return {
+                        name: operation.operationId,
+                        description: operation.description,
+                    };
+                }),
+            });
+        }
+
+        lambdaFunctions.build(`src/generated/functions.ts`);
 
         return {
             spec: request.constructInfo.spec,
