@@ -43,7 +43,7 @@ describe('Builder', () => {
             .addSourceFile()
 
         sourceFileBuilder.addBlock(
-            new ClassBuilder('MyClazz')
+            ClassBuilder.createClass('MyClazz')
                 .setComment({comment: 'This is some class', jsDoc: true})
                 .addMethod({
                     name: 'test',

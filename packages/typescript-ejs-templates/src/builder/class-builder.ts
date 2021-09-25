@@ -2,6 +2,10 @@ import { ClassImplBlock, CommentProps, MemberFunctionBodyProps, PropertyInterfac
 import { IClassBuilder } from './types';
 
 export class ClassBuilder implements IClassBuilder {
+    public static createClass(name: string): IClassBuilder {
+        return new ClassBuilder(name);
+    }
+
     public comment?: string;
 
     public extendsClass?: string;
