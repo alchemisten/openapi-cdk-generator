@@ -1,0 +1,23 @@
+{
+	"name": "basic",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"build": "cdkdx build",
+		"generate-api": "openapi-cdk-generator generate"
+	},
+	"peerDependencies": {},
+	"dependencies": {
+		"@aws-cdk/core": "1.124.0",
+		"@aws-cdk/aws-lambda": "1.124.0",
+		"@aws-cdk/aws-apigateway": "1.124.0",
+		"source-map-support": "^0.5.20"
+	},
+	"devDependencies": {
+		"@aws-cdk/assert": "1.124.0",
+		"@types/node": "^10.17.0",
+		"aws-cdk": "1.124.0",
+		"cdkdx": "1.2.0",
+		"openapi-cdk-generator": "*"
+	}
+}

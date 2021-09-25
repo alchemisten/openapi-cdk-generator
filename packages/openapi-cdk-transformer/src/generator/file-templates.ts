@@ -14,7 +14,7 @@ export abstract class GeneratorFileTemplates {
     public static addLambdaFunctionImport(builder: ISourceFileBuilder): ISourceFileBuilder {
         builder.addImport({
             from: '@aws-cdk/aws-lambda',
-            namedExports: ['Function'],
+            namedExports: ['IFunction'],
         });
         return builder;
     }
@@ -27,7 +27,7 @@ export abstract class GeneratorFileTemplates {
             type: 'class-interface',
             name: props.className,
             properties: props.operations.map((operation) => ({
-                type: 'Function',
+                type: 'IFunction',
                 fieldName: operation.name,
                 comment: operation.description,
                 jsDoc: true,

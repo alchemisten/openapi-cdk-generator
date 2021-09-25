@@ -1,0 +1,44 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI CDK Typescript Generator Basic Sample API
+  description: OpenAPI CDK Typescript Generator Basic Sample API
+  version: 1.0.0
+paths:
+  /test:
+    get:
+      operationId: getAllTestObjects
+      description: Get some test values
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TestObject'
+    post:
+      operationId: createTestObject
+      description: Create new test value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestObject'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestObject'
+components:
+  schemas:
+    TestObject:
+      type: object
+      properties:
+        foo:
+          type: string
+          required: true
+        bar:
+          type: number

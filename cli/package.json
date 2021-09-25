@@ -1,0 +1,71 @@
+{
+	"name": "openapi-cdk-generator",
+	"version": "1.0.0",
+	"description": "Opinionated typescript code generator for cdk api gateway code based on OpenAPI specs",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/alchemisten/openapi-cdk-generator.git"
+	},
+	"keywords": [
+		"cdk",
+		"typescript",
+		"generator",
+		"openapi",
+		"open-api",
+		"api-gateway",
+		"lambda",
+		"cli",
+		"clipanion"
+	],
+	"author": "Alchemisten AG",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/alchemisten/openapi-cdk-generator/issues"
+	},
+	"homepage": "https://github.com/alchemisten/openapi-cdk-generator#readme",
+	"bin": {
+		"openapi-cdk-generator": "bin/openapi-cdk-generator-cli.js"
+	},
+	"main": "./lib/src/index.js",
+	"types": "./lib/src/index.d.ts",
+	"files": [
+		"lib",
+		"bin"
+	],
+	"scripts": {
+		"build": "rimraf lib && tsc",
+		"watch": "tsc -w",
+		"link": "npm link --force",
+		"lint": "eslint . --max-warnings 0",
+		"format": "eslint --fix"
+	},
+	"dependencies": {
+		"openapi-cdk-transformer": "^0.1.0",
+		"typescript-ejs-templates": "^0.1.0",
+		"chalk": "^4.1.2",
+		"change-case": "^4.1.2",
+		"clipanion": "^2.6.2",
+		"cosmiconfig": "^7.0.1",
+		"ejs": "^3.1.6",
+		"fs-extra": "^10.0.0",
+		"inquirer": "^8.1.0",
+		"latest-version": "^6.0.0",
+		"mem-fs": "^2.2.1",
+		"mem-fs-editor": "^9.3.0",
+		"rimraf": "^3.0.2",
+		"yaml": "^1.10.2"
+	},
+	"devDependencies": {
+		"@types/ejs": "^3.1.0",
+		"@types/fs-extra": "^9.0.11",
+		"@types/inquirer": "^7.3.1",
+		"@types/mem-fs": "^1.1.2",
+		"@types/mem-fs-editor": "^7.0.1",
+		"@types/node": "^16.9.6",
+		"@types/rimraf": "^3.0.2",
+		"@types/yaml": "^1.9.7",
+		"eslint": "^7.32.0",
+		"prettier": "^2.4.0",
+		"typescript": "^4.3.2"
+	}
+}

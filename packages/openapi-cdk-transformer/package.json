@@ -8,7 +8,7 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "tsc",
+		"build": "rimraf lib && tsc",
 		"watch": "tsc -w",
 		"test": "jest --passWithNoTests"
 	},
@@ -35,11 +35,10 @@
 		"change-case": "^4.1.2",
 		"cosmiconfig": "^7.0.1",
 		"ejs": "^3.1.6",
-		"mem-fs": "^2.2.1",
-		"mem-fs-editor": "^9.3.0",
 		"openapi-types": "^7.0.1",
 		"prettier": "^2.2.1",
 		"typescript-ejs-templates": "^0.1.0",
+		"rimraf": "^3.0.2",
 		"yaml": "^1.10.0"
 	},
 	"devDependencies": {

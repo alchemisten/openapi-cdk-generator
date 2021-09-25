@@ -1,0 +1,4 @@
+{
+	"specPath": "spec/simple-spec.openapi.yml",
+	"name": "simple-api"
+}
