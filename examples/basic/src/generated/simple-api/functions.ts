@@ -3,8 +3,6 @@ import { IFunction } from '@aws-cdk/aws-lambda';
 /**
  * Some simple functions to test the generator
  */
-export interface ITestsFunctions {}
-
 export interface ITestFunctions {
     /**
      * Get some test values

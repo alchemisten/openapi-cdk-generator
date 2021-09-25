@@ -4,7 +4,7 @@ info:
   description: OpenAPI CDK Typescript Generator Basic Sample API
   version: 1.0.0
 tags:
-  - name: Tests
+  - name: Test
     description: Some simple functions to test the generator
 paths:
   /test:
