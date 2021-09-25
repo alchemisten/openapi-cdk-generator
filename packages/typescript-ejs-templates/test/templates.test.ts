@@ -3,9 +3,13 @@ import {
     CommentProps,
     EjsTypescriptUtils,
     FunctionParametersProps,
+    FunctionInterfacesProps,
+    FunctionBodyProps,
     commentTemplate,
     functionParametersTemplate,
-    blocksTemplate, functionsInterfaceTemplate, FunctionInterfacesProps,
+    functionBodyTemplate,
+    blocksTemplate,
+    functionsInterfaceTemplate,
 } from "../src";
 
 describe('Templates', () => {
@@ -82,5 +86,31 @@ describe('Templates', () => {
 
         const renderedFunctionInterface = EjsTypescriptUtils.render(functionsInterfaceTemplate, props);
         console.log(renderedFunctionInterface);
+    });
+
+    test('Function Body', async () => {
+        const props: FunctionBodyProps = {
+            type: 'constant',
+            body: 'return 1;',
+            name: 'foo',
+            returnType: 'number',
+            comment: 'Hello',
+            async: true,
+            asyncReturn: true,
+            parameters: [
+                {
+                    name: 'firstParam',
+                    type: 'string'
+                },
+                {
+                    name: 'secondParam',
+                    type: 'number',
+                    optional: true
+                }
+            ]
+        }
+
+        const renderedFunctionBody = EjsTypescriptUtils.render(functionBodyTemplate, props);
+        console.log(renderedFunctionBody);
     });
 })

@@ -29,4 +29,14 @@ export interface FunctionBodyProps extends FunctionInterfaceProps, CommentProps 
 // language=ejs
 export const functionBodyTemplate = `
 <%- include('comment', localData) -%>
+<% if(type === 'named' || type === 'member') { -%>
+    <%- include('modifiers', localData) %> <% if(type === 'named') { %>function<% } -%> <%- name -%>
+<% } -%>
+<% if(type === 'constant') { -%>
+const <%- name -%> = <%- include('modifiers', localData) -%>
+<% } -%>
+<%- include('function-parameters', localData) -%>
+:<%- utils.wrapIf(localData.asyncReturn, 'Promise<', returnType, '>') -%> <% if(type === 'constant') { %>=><% } -%> {
+    <%- body %>
+}
 `;
