@@ -1,8 +1,11 @@
 import { CommentProps } from './comment';
-import { FunctionsProps } from './functions-interface';
+import { FunctionInterfacesProps } from './functions-interface';
 import { PropertiesInterfaceProps } from './properties-interface';
 
-export interface ClassInterfaceProps extends Partial<PropertiesInterfaceProps>, Partial<FunctionsProps>, CommentProps {
+export interface ClassInterfaceProps
+    extends Partial<PropertiesInterfaceProps>,
+        Partial<FunctionInterfacesProps>,
+        CommentProps {
     name: string;
     extendsInterfaces?: string[];
     generics?: string;

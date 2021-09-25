@@ -7,3 +7,5 @@ export * from './type-imports';
 export * from './source-file';
 export * from './comment';
 export * from './blocks';
+export * from './function-body';
+export * from './function-parameters';

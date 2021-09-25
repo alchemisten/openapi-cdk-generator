@@ -4,6 +4,8 @@ import {
     classImplTemplate,
     classInterfaceTemplate,
     commentTemplate,
+    functionBodyTemplate,
+    functionParametersTemplate,
     functionsInterfaceTemplate,
     modifierTemplate,
     propertiesInterfaceTemplate,
@@ -41,6 +43,12 @@ export abstract class EjsTypescriptUtils {
                 break;
             case 'blocks':
                 template = blocksTemplate;
+                break;
+            case 'function-body':
+                template = functionBodyTemplate;
+                break;
+            case 'function-parameters':
+                template = functionParametersTemplate;
                 break;
             default:
                 throw new Error(`Template ${originalPath} is not defined`);
