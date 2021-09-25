@@ -1,4 +1,4 @@
-import { pascalCase } from 'change-case';
+import { paramCase, pascalCase } from 'change-case';
 import { ICodeFormatter, NoopFormatter, TypescriptEjsTemplateBuilder } from 'typescript-ejs-templates';
 import {
     CDKConstructGenerateProps,
@@ -7,7 +7,7 @@ import {
     NullableApiType,
     SourceFile,
 } from '../types';
-import { GeneratorFileTemplates } from './files';
+import { GeneratorFileTemplates } from './file-templates';
 
 export interface CDKConstructGeneratorProps {
     formatter?: ICodeFormatter;
@@ -16,9 +16,23 @@ export interface CDKConstructGeneratorProps {
 export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {
     public constructor(protected props: CDKConstructGeneratorProps) {}
 
+    protected static rawFilesToSourceFiles(files: Record<string, string>): Record<string, SourceFile> {
+        return Object.entries(files).reduce<Record<string, SourceFile>>((stack, [filePath, content]) => {
+            stack[filePath] = {
+                filePath,
+                content,
+            };
+            return stack;
+        }, {});
+    }
+
     public async generate<V extends NullableApiType>(
         request: CDKConstructGenerateProps<V>
     ): Promise<CDKConstructGeneratorResult<V>> {
+        const folderApiName = paramCase(request.apiName);
+        const cdkRoot = `src/generated/${folderApiName}`;
+        const lambdasRoot = `src/lambdas/shared/generated/${folderApiName}`;
+
         const builder = new TypescriptEjsTemplateBuilder({
             formatter: this.props.formatter ?? new NoopFormatter(),
         });
@@ -40,20 +54,11 @@ export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {
             });
         }
 
-        lambdaFunctions.build(`src/generated/functions.ts`);
+        lambdaFunctions.build(`${cdkRoot}/functions.ts`);
 
         return {
             spec: request.constructInfo.spec,
-            outputs: Object.entries(builder.getSourceFiles()).reduce<Record<string, SourceFile>>(
-                (stack, [filePath, content]) => {
-                    stack[filePath] = {
-                        filePath,
-                        content,
-                    };
-                    return stack;
-                },
-                {}
-            ),
+            outputs: CDKConstructGeneratorImpl.rawFilesToSourceFiles(builder.getSourceFiles()),
         };
     }
 }

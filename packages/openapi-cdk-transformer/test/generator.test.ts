@@ -24,6 +24,7 @@ describe( 'Typescript generator', () => {
         const constructs: CDKConstructResult = await transformer.transform( spec );
 
         const result: CDKConstructGeneratorResult = await generator.generate({
+            apiName: 'PetStoreApi',
             constructInfo: constructs,
         });
 

@@ -2,6 +2,7 @@ import { CDKConstructResult } from './transformer';
 import { NullableApiType, OpenApiSpecs } from './open-api';
 
 export interface CDKConstructGenerateProps<V extends NullableApiType = 'none'> {
+    apiName: string;
     constructInfo: CDKConstructResult<V>;
 }
 

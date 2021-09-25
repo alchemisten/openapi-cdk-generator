@@ -1,6 +1,7 @@
+import { CommentProps } from './comment';
 import { PropertiesInterfaceProps } from './properties-interface';
 
-export interface ClassImplProps extends Partial<PropertiesInterfaceProps> {
+export interface ClassImplProps extends Partial<PropertiesInterfaceProps>, CommentProps {
     name: string;
     extendsClass?: string;
     implementsInterfaces?: string[];
@@ -9,6 +10,7 @@ export interface ClassImplProps extends Partial<PropertiesInterfaceProps> {
 
 // language=ejs
 export const classImplTemplate = `
+<%- include('comment', localData) -%>
 export class <%- name %><% if(typeof generics !== 'undefined') { %><<%- generics %>><% } %>
 <% if(typeof extendsClass !== 'undefined') { %>extends <%- extendsClass %><% } %>
 <% if(typeof implementsInterfaces !== 'undefined') { %> implements <%- implementsInterfaces.join(', ') %><% } %> {

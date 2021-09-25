@@ -6,12 +6,12 @@ export interface CommentProps {
 // language=ejs
 export const commentTemplate = `
 <% if( typeof comment !== 'undefined' && comment.trim().length  > 0) { const isJsDoc = typeof jsDoc !== 'undefined' && jsDoc === true; _%>
-<% const delimiter = isJsDoc ? '*' : '//', content = comment.split('\\n') _%>
-<% if(isJsDoc) { %>/**<% } %>
-<% for( const commentLine of content) { _%>
-<%- delimiter %> <%- commentLine %>
-<% } _%>
-<% if(isJsDoc) { %>*/
-<% } -%>
+    <% const delimiter = isJsDoc ? '*' : '//', content = comment.split('\\n') _%>
+    <% if(isJsDoc) { %>/**<% } %>
+    <% for( const commentLine of content) { _%>
+    <%- delimiter %> <%- commentLine %>
+    <% } _%>
+    <% if(isJsDoc) { %>*/
+    <% } -%>
 <% } _%>
 `;
