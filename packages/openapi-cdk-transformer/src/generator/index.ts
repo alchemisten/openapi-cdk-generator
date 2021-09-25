@@ -32,17 +32,8 @@ export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {
                     filePath: 'functions.ts',
                     content: this.formatCode(
                         GeneratorFileTemplates.lambdaConstruct({
-                            className: 'TheClass',
+                            className: 'ISomeLambdaFunctions',
                             operations: ['getMe'],
-                            imports: [
-                                {
-                                    // namedExports: ['Function'],
-                                    from: '@aws-cdk/aws-lambda',
-                                    // singleImport: 'lambda',
-                                    starAs: true,
-                                    exportName: 'test',
-                                },
-                            ],
                         })
                     ),
                 },

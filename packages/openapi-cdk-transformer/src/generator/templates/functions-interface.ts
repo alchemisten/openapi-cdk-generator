@@ -1,0 +1,28 @@
+import { ModifiersProps } from './modifiers';
+
+export interface FunctionsProps {
+    functions: FunctionProps[];
+}
+
+export interface FunctionProps extends ModifiersProps {
+    name: string;
+    parameters: FunctionParameter[];
+    returnType: string;
+    asyncReturn?: boolean;
+}
+
+export interface FunctionParameter {
+    name: string;
+    type: string;
+    optional?: boolean;
+}
+
+// language=ejs
+export const functionsInterfaceTemplate = `
+<% for(const func of functions) { %>
+    <%- include('modifiers', func) %> <%- func.name %>(<% for(let i = 0; i < func.parameters.length; i++) { const param = func.parameters[i]; %>
+        <%- param.name %><%- param.optional ? '?' : '' -%>: <%- param.type -%><%- i !== func.parameters.length -1 ? ', ' : ' ' -%>
+        <% } %>
+    ):  <%- wrapIf('Promise<', func.returnType, '>', func.asyncReturn) %>
+<% } %>
+`;

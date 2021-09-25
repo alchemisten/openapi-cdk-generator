@@ -24,6 +24,6 @@ import <%- (imp.starAs && imp.exportName) ? '* as' : '' %> <%- imp.singleImport 
     <% if(imp.namedExports) { %>
         { <%- imp.namedExports.join(', ') %> }
     <% } %>
-<% if (imp.exportName || imp.namedExport || imp.singleImport) {%>from<% } %> '<%- imp.from %>';
+<% if (imp.exportName || imp.namedExports || imp.singleImport) {%>from<% } %> '<%- imp.from %>';
 <% } %>
 `;
