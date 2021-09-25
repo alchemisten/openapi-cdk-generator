@@ -6,6 +6,7 @@ export enum LogVerbosity {
 }
 
 export interface ILogger {
+    colorful(prefix: string, message: string, color: string): void;
     log(verbosity: LogVerbosity, message: string): void;
     verbose(message: string): void;
     info(message: string): void;

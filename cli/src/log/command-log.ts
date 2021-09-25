@@ -18,8 +18,17 @@ export class CommandContextLogger implements ILogger {
         });
     }
 
+    public static formatMessage(prefix: string, message: string, color: string): string {
+        const colorizer = chalk.keyword(color);
+        return `${chalk.inverse(colorizer(` ${prefix} `))}: ${colorizer(message)}\n`;
+    }
+
     // eslint-disable-next-line no-useless-constructor,@typescript-eslint/explicit-member-accessibility
     constructor(private props: CommandContextLoggerProps) {}
+
+    public colorful(prefix: string, message: string, color: string): void {
+        this.props.stdOut.write(CommandContextLogger.formatMessage(prefix, message, color));
+    }
 
     public log(verbosity: LogVerbosity, message: string): void {
         if (verbosity < this.props.verbosity) {

@@ -2,11 +2,12 @@ import { ISourceFileBuilder } from 'typescript-ejs-templates';
 
 export interface OperationDescriptor {
     name: string;
-    description: string;
+    description?: string;
 }
 
 export interface LambdaConstructProps {
     className: string;
+    description?: string;
     operations: OperationDescriptor[];
 }
 
@@ -26,6 +27,8 @@ export abstract class GeneratorFileTemplates {
         builder.addBlock({
             type: 'class-interface',
             name: props.className,
+            comment: props.description,
+            jsDoc: true,
             properties: props.operations.map((operation) => ({
                 type: 'IFunction',
                 fieldName: operation.name,

@@ -10,6 +10,7 @@
 		"no-restricted-syntax": "off",
 		"no-cond-assign": "off",
 		"no-param-reassign": "off",
+		"no-plusplus": "off",
 		"class-methods-use-this": "off",
 		"consistent-return": "off",
 		"import/prefer-default-export": "off",

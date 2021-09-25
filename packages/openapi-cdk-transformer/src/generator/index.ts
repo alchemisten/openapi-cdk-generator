@@ -45,6 +45,7 @@ export class CDKConstructGeneratorImpl implements ICDKConstructGenerator {
 
             GeneratorFileTemplates.addLambdasInterfaceConstruct(lambdaFunctions, {
                 className: functionsInterface,
+                description: controller.description,
                 operations: Object.values(controller.operations).map((operation) => {
                     return {
                         name: operation.operationId,
