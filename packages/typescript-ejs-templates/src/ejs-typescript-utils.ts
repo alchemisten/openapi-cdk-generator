@@ -5,6 +5,7 @@ import {
     classInterfaceTemplate,
     commentTemplate,
     constantsTemplate,
+    enumTemplate,
     functionBodyTemplate,
     functionParametersTemplate,
     functionsInterfaceTemplate,
@@ -53,6 +54,9 @@ export abstract class EjsTypescriptUtils {
                 break;
             case 'constants':
                 template = constantsTemplate;
+                break;
+            case 'enum':
+                template = enumTemplate;
                 break;
             default:
                 throw new Error(`Template ${originalPath} is not defined`);

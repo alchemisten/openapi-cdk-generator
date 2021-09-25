@@ -1,4 +1,5 @@
 import {
+    EnumProps,
     BlocksProps,
     CommentProps,
     ConstantsProps,
@@ -12,6 +13,7 @@ import {
     blocksTemplate,
     functionsInterfaceTemplate,
     constantsTemplate,
+    enumTemplate,
 } from "../src";
 
 describe('Templates', () => {
@@ -135,5 +137,28 @@ describe('Templates', () => {
         }
         const renderedConstant = EjsTypescriptUtils.render(constantsTemplate, props);
         console.log(renderedConstant);
+    });
+
+    test('Enum', async () => {
+        const props: EnumProps = {
+            name: 'MyEnum',
+            fields: [
+                {
+                    key: 'FOO',
+                    value: 12323,
+                },
+                {
+                    key: 'BAR',
+                    value: 'test',
+                    asString: true
+                },
+                {
+                    key: 'BAZ',
+                }
+            ]
+        }
+
+        const renderedEnum = EjsTypescriptUtils.render(enumTemplate, props);
+        console.log(renderedEnum);
     });
 })
