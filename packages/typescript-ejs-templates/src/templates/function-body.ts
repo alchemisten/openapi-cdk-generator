@@ -2,7 +2,7 @@ import { CommentProps } from './comment';
 import { FunctionInterfaceProps } from './functions-interface';
 
 export interface FunctionBodyProps extends FunctionInterfaceProps, CommentProps {
-    type: 'named' | 'constant' | 'member';
+    functionType: 'named' | 'constant' | 'member';
     body: string;
 }
 
@@ -29,14 +29,14 @@ export interface FunctionBodyProps extends FunctionInterfaceProps, CommentProps 
 // language=ejs
 export const functionBodyTemplate = `
 <%- include('comment', localData) -%>
-<% if(type === 'named' || type === 'member') { -%>
-    <%- include('modifiers', localData) %> <% if(type === 'named') { %>function<% } -%> <%- name -%>
+<% if(functionType === 'named' || functionType === 'member') { -%>
+    <%- include('modifiers', localData) %> <% if(functionType === 'named') { %>function<% } -%> <%- name -%>
 <% } -%>
-<% if(type === 'constant') { -%>
+<% if(functionType === 'constant') { -%>
 const <%- name -%> = <%- include('modifiers', localData) -%>
 <% } -%>
 <%- include('function-parameters', localData) -%>
-:<%- utils.wrapIf(localData.asyncReturn, 'Promise<', returnType, '>') -%> <% if(type === 'constant') { %>=><% } -%> {
+:<%- utils.wrapIf(localData.asyncReturn, 'Promise<', returnType, '>') -%> <% if(functionType === 'constant') { %>=><% } -%> {
     <%- body %>
 }
 `;

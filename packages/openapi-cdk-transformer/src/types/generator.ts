@@ -3,6 +3,10 @@ import { NullableApiType, OpenApiSpecs } from './open-api';
 
 export interface CDKConstructGenerateProps<V extends NullableApiType = 'none'> {
     apiName: string;
+    constructsPath: string;
+    lambdasPath: string;
+    lambdasSharedPath: string;
+    lambdaPrefix: string;
     constructInfo: CDKConstructResult<V>;
 }
 

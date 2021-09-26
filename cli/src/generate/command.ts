@@ -35,13 +35,16 @@ export class GenerateCommand extends BaseCommand {
     protected name?: string;
 
     @Command.String('--lambdas')
-    protected lambdasPath = 'src/lambdas/';
+    protected lambdasPath?: string;
+
+    @Command.String('--lambdas-shared')
+    protected lambdasSharedPath?: string;
 
     @Command.String('--constructs')
-    protected constructsPath = 'src/generated/';
+    protected constructsPath?: string;
 
     @Command.String('--lambda-prefix')
-    protected lambdaPrefix = 'api-';
+    protected lambdaPrefix?: string;
 
     @Command.Boolean('--force')
     protected force = false;
@@ -59,6 +62,7 @@ export class GenerateCommand extends BaseCommand {
             name: this.name,
             lambdaPrefix: this.lambdaPrefix,
             lambdasPath: this.lambdasPath,
+            lambdasSharedPath: this.lambdasSharedPath,
             constructsPath: this.constructsPath,
         };
 
@@ -73,6 +77,7 @@ export class GenerateCommand extends BaseCommand {
         const config = {
             lambdaPrefix: 'api-',
             lambdasPath: 'src/lambdas/',
+            lambdasSharedPath: 'shared/generated/',
             constructsPath: 'src/generated/',
             ...fileConfig?.config,
             ...cliConfig,
@@ -106,6 +111,10 @@ export class GenerateCommand extends BaseCommand {
         const result: CDKConstructGeneratorResult = await generator.generate({
             apiName: config.name,
             constructInfo: constructs,
+            lambdaPrefix: config.lambdaPrefix,
+            lambdasPath: config.lambdasPath,
+            constructsPath: config.constructsPath,
+            lambdasSharedPath: config.lambdasSharedPath,
         });
 
         const absoluteConstructsPath = path.resolve(process.cwd(), config.constructsPath);

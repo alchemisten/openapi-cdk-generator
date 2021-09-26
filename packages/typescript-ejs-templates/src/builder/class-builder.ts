@@ -46,9 +46,9 @@ export class ClassBuilder implements IClassBuilder {
         return this;
     }
 
-    public addMethod(method: Omit<MemberFunctionBodyProps, 'type'>): IClassBuilder {
+    public addMethod(method: Omit<MemberFunctionBodyProps, 'functionType'>): IClassBuilder {
         this.methods.push({
-            type: 'member',
+            functionType: 'member',
             ...method,
         });
         return this;

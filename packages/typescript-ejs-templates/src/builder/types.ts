@@ -30,7 +30,7 @@ export interface IClassBuilder extends ClassImplProps {
     setGeneric(generic: string): IClassBuilder;
     addImplementingInterface(...interfaces: string[]): IClassBuilder;
     addProperty(property: PropertyInterface): IClassBuilder;
-    addMethod(method: Omit<MemberFunctionBodyProps, 'type'>): IClassBuilder;
+    addMethod(method: Omit<MemberFunctionBodyProps, 'functionType'>): IClassBuilder;
 
     build(): ClassImplBlock;
 }

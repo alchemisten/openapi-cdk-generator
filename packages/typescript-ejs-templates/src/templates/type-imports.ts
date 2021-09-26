@@ -15,12 +15,13 @@ export interface NamedExport {
     starAs?: undefined;
     singleImport?: string;
     namedExports?: string[];
+    typeOnly?: boolean;
 }
 
 // language=ejs
 export const typeImportsTemplate = `
 <% for(const imp of imports) { _%>
-import <%- (imp.starAs && imp.exportName) ? '* as' : '' %> <%- imp.singleImport || imp.exportName || '' %><%- (imp.singleImport && imp.namedExports) ? ',' : '' %>
+import <% if(imp.typeOnly) { %>type<% } %> <%- (imp.starAs && imp.exportName) ? '* as' : '' %> <%- imp.singleImport || imp.exportName || '' %><%- (imp.singleImport && imp.namedExports) ? ',' : '' %>
     <% if(imp.namedExports) { %>
         { <%- imp.namedExports.join(', ') %> }
     <% } %>

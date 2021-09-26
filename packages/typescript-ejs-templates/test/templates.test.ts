@@ -32,6 +32,14 @@ describe('Templates', () => {
         const props: BlocksProps = {
             blocks: [
                 {
+                  type: 'function-body',
+                  name: 'fuu',
+                  body: 'return 1;',
+                  returnType: 'void',
+                  parameters: [],
+                  functionType: 'constant'
+                },
+                {
                     type: 'class-interface',
                     name: 'MyInterface',
                     extendsInterfaces: ['Foo', 'Bar']
@@ -48,7 +56,7 @@ describe('Templates', () => {
                     ],
                     methods: [
                         {
-                            type: 'member',
+                            functionType: 'member',
                             name: 'test',
                             body: 'return value + 1',
                             returnType: 'number',
@@ -117,7 +125,7 @@ describe('Templates', () => {
 
     test('Function Body', async () => {
         const props: FunctionBodyProps = {
-            type: 'constant',
+            functionType: 'constant',
             body: 'return 1;',
             name: 'foo',
             returnType: 'number',

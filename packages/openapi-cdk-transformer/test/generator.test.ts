@@ -26,6 +26,10 @@ describe( 'Typescript generator', () => {
         const result: CDKConstructGeneratorResult = await generator.generate({
             apiName: 'PetStoreApi',
             constructInfo: constructs,
+            constructsPath: 'src/generated',
+            lambdasPath: 'src/lambdas',
+            lambdasSharedPath: 'shared/generated',
+            lambdaPrefix: 'api-'
         });
 
         for(const output of Object.values(result.outputs)) {

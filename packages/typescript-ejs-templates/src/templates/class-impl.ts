@@ -11,7 +11,7 @@ export interface ClassImplProps extends Partial<PropertiesInterfaceProps>, Comme
 }
 
 export interface MemberFunctionBodyProps extends FunctionBodyProps {
-    type: 'member';
+    functionType: 'member';
 }
 
 // language=ejs

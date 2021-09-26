@@ -3,6 +3,7 @@ export interface GenerateCommandConfig {
     name?: string;
     lambdaPrefix?: string;
     lambdasPath?: string;
+    lambdasSharedPath?: string;
     constructsPath?: string;
 }
 
