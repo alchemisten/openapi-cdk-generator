@@ -32,6 +32,7 @@
 	},
 	"homepage": "https://github.com/alchemisten/openapi-cdk-generator#readme",
 	"dependencies": {
+		"@apidevtools/json-schema-ref-parser": "^9.0.9",
 		"change-case": "^4.1.2",
 		"cosmiconfig": "^7.0.1",
 		"ejs": "^3.1.6",

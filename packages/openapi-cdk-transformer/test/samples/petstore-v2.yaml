@@ -709,6 +709,8 @@ definitions:
         type: integer
         format: int32
         description: User Status
+      pet:
+        $ref: '#/definitions/Pet'
     xml:
       name: User
 externalDocs:
