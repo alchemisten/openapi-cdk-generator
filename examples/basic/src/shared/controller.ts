@@ -18,3 +18,5 @@ export interface GetFooProps {
 export interface ISampleController {
     getFoo(props: GetFooProps): Promise<Foo>;
 }
+
+export const SampleControllerToken = Symbol.for('SampleController');
